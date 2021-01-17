@@ -1,0 +1,74 @@
+---
+title: Playground
+template: default_with_tail.html
+name: playground
+---
+
+{{ define "body" }}
+
+<h1 class="hero center-text">Playground</h1>
+<h2 class="center-text">Practice using Traindown in your browser.</h2>
+
+<hr />
+
+<div>
+  <textarea id="input">
+@ 1/1/2020
+
+* This is a Traindown scratch pad
+* Practice your knowledge of Traindown!
+
+# Good time?: YES
+
+Squat:
+  500
+  </textarea>
+</div>
+<div>
+  <button id="run_json">Output as JSON</button>
+  <button id="run_tokens">Output as Tokens</button>
+</div>
+<div>
+  <pre id="output">See the output here!</pre>
+</div>
+
+
+{{ end }}
+
+{{ define "tail" }}
+
+<script type="module">
+  import traindown from "/script/traindown.js";
+
+  let td;
+  let src;
+  let presenter;
+  let result;
+
+  const input = document.getElementById("input");
+  const runJSON = document.getElementById("run_json");
+  const runTokens = document.getElementById("run_tokens");
+  const output = document.getElementById("output");
+
+  const run = function(presenter) {
+    src = input.value;
+    td = new traindown(src);
+    result = td.parse(presenter);
+
+    if(presenter == "json") {
+      output.innerHTML = JSON.stringify(result, null, "  ");
+    } else {
+      output.innerHTML = "";
+
+      for (let i = 0; i < result.length; ++i) {
+        output.innerHTML += result[i];
+        output.innerHTML += "\n";
+      }
+    }
+  }
+
+  runJSON.addEventListener("click", function() { run("json"); });
+  runTokens.addEventListener("click", function() { run(); });
+</script>
+
+{{ end }}

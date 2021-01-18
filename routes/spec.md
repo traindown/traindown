@@ -29,7 +29,7 @@ Without further ado, here is **Traindown**.
 
 **Traindown** has a relatively small set of reserved keywords and identifiers.
 
-There is intention behind this. The point is to require as little cognitive overhead of the person (not user!) as possible. You have to figure that alot of **Traindown** is typed while out of breath and covered in chalk or whatever else.
+There is intention behind this. The point is to require as little cognitive overhead of the writer (not user!) as possible. You have to figure that alot of **Traindown** is typed while out of breath and covered in chalk or whatever else.
 
 <table>
   <thead><tr><th>Token</th><th>Name</th><th>Rules</th></tr></thead>
@@ -139,9 +139,11 @@ A **session** is to be considered as a single training event.
 
 Every session **must** have at least a date on which it occurred.
 
-You **should** provide error messaging to remind the person that they should include a date (and/or time) in their **Traindown** document.
+You **should** provide error messaging to remind the writer that they should include a date (and/or time) in their **Traindown** document.
 
-A single **Traindown** document **may** contain more than one session. This is up to the person writing the document. Should your software not honor this, please be sure to message this to the people using your software. Ideally this is to be done prior to an error message and you should offer to auto format into one session per document as this is simple to do.
+A single **Traindown** document **may** contain more than one session. This is up to the person writing the document, not you.
+
+Should your software not honor this, please be sure to message this to the people using your software. Ideally this is to be done prior to an error message and you should offer to auto format into one session per document as this is simple to do.
 
 In addition to the required date (and/or time), a session **may** contain metadata key/value pairs, notes, and movements. All three of those should be considered *optional*. A session without movements may not seem like a use case, but it is.
 
@@ -153,12 +155,16 @@ A movement **may** contain metadata key/value pairs, notes, and performances.
 
 Like with sessions and movements, it may not make sense to have a movement without performances, but it is a supported use case so let's honor it.
 
+You **should** record the sequence of the movements provided by the writer. This is important for them to make sense of the story of the session.
+
 ### Performance Scope
 
 A **performance** is the expression of a movement.
 
 Each performance **must** have a load.
 
-A person writing **Traindown** may optionally provide sets, reps, and failures. In absence of explicit detail, you should assume a single set, a single rep, and no failures.
+A person writing **Traindown** may optionally provide sets, reps, and failures. In absence of explicit detail, you **should** assume a single set, a single rep, and no failures.
 
 A performance **may** contain metadata key/value pairs and notes.
+
+You **should** record the sequence of the performances provided by the writer. This is important for them to make sense of the story of the movement.

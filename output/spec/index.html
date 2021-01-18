@@ -43,7 +43,7 @@
 <p>Without further ado, here is <strong>Traindown</strong>.</p>
 <h2>Keywords and Identifiers</h2>
 <p><strong>Traindown</strong> has a relatively small set of reserved keywords and identifiers.</p>
-<p>There is intention behind this. The point is to require as little cognitive overhead of the person (not user!) as possible. You have to figure that alot of <strong>Traindown</strong> is typed while out of breath and covered in chalk or whatever else.</p>
+<p>There is intention behind this. The point is to require as little cognitive overhead of the writer (not user!) as possible. You have to figure that alot of <strong>Traindown</strong> is typed while out of breath and covered in chalk or whatever else.</p>
 <table>
   <thead><tr><th>Token</th><th>Name</th><th>Rules</th></tr></thead>
   <tbody>
@@ -145,18 +145,21 @@
 <h3>Session Scope</h3>
 <p>A <strong>session</strong> is to be considered as a single training event.</p>
 <p>Every session <strong>must</strong> have at least a date on which it occurred.</p>
-<p>You <strong>should</strong> provide error messaging to remind the person that they should include a date (and/or time) in their <strong>Traindown</strong> document.</p>
-<p>A single <strong>Traindown</strong> document <strong>may</strong> contain more than one session. This is up to the person writing the document. Should your software not honor this, please be sure to message this to the people using your software. Ideally this is to be done prior to an error message and you should offer to auto format into one session per document as this is simple to do.</p>
+<p>You <strong>should</strong> provide error messaging to remind the writer that they should include a date (and/or time) in their <strong>Traindown</strong> document.</p>
+<p>A single <strong>Traindown</strong> document <strong>may</strong> contain more than one session. This is up to the person writing the document, not you.</p>
+<p>Should your software not honor this, please be sure to message this to the people using your software. Ideally this is to be done prior to an error message and you should offer to auto format into one session per document as this is simple to do.</p>
 <p>In addition to the required date (and/or time), a session <strong>may</strong> contain metadata key/value pairs, notes, and movements. All three of those should be considered <em>optional</em>. A session without movements may not seem like a use case, but it is.</p>
 <h3>Movement Scope</h3>
 <p>A <strong>movement</strong> is to be considered as a single exercise or event in a training session. An example of this would be something like &quot;squats&quot;.</p>
 <p>A movement <strong>may</strong> contain metadata key/value pairs, notes, and performances.</p>
 <p>Like with sessions and movements, it may not make sense to have a movement without performances, but it is a supported use case so let's honor it.</p>
+<p>You <strong>should</strong> record the sequence of the movements provided by the writer. This is important for them to make sense of the story of the session.</p>
 <h3>Performance Scope</h3>
 <p>A <strong>performance</strong> is the expression of a movement.</p>
 <p>Each performance <strong>must</strong> have a load.</p>
-<p>A person writing <strong>Traindown</strong> may optionally provide sets, reps, and failures. In absence of explicit detail, you should assume a single set, a single rep, and no failures.</p>
+<p>A person writing <strong>Traindown</strong> may optionally provide sets, reps, and failures. In absence of explicit detail, you <strong>should</strong> assume a single set, a single rep, and no failures.</p>
 <p>A performance <strong>may</strong> contain metadata key/value pairs and notes.</p>
+<p>You <strong>should</strong> record the sequence of the performances provided by the writer. This is important for them to make sense of the story of the movement.</p>
 
     
 <footer style="text-align: center;">

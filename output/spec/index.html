@@ -29,15 +29,134 @@
 <div class="logo"></div>
 
 
-    
-
-<h1 class="hero center-text">Spec</h1>
+    <h1 class="hero center-text">Spec</h1>
 <h2 class="center-text">The Traindown language specification.</h2>
-
-<hr />
-
-<p class="center-text">Coming soon...</p>
-
+<h2 class="center-text">Version 1.2</h2>
+<small class="block center-text">Published 2020.01.18</small>
+<hr>
+<p>This specification is intended for <strong>developers wanting to build software that uses Traindown</strong>.</p>
+<p><em>If you are a consumer looking for information on how to use <strong>Traindown</strong> to record your training, please refer to the <a href="/guide">Guide</a>.</em></p>
+<h2>Overview</h2>
+<p>The specification presented below aims to provide a complete definition of the <strong>Traindown</strong> Language such that you may go out into the world and develop software that can help other folks record and make sense of their personal training history.</p>
+<p>The language used in this specification is informal but comprehensive. Should you spot any errors or have any questions, please don't hesitate to email me at <a href="mailto:tyler@greaterscott.com">tyler at greaterscott.com</a>.</p>
+<p>Also, don't forget to check out the <a href="/source">Source</a> page and the repos linked there for official prebuilt libraries that make using <strong>Traindown</strong> in your project as easy as adding another dependency.</p>
+<p>Without further ado, here is <strong>Traindown</strong>.</p>
+<h2>Keywords and Identifiers</h2>
+<p><strong>Traindown</strong> has a relatively small set of reserved keywords and identifiers.</p>
+<p>There is intention behind this. The point is to require as little cognitive overhead of the person (not user!) as possible. You have to figure that alot of <strong>Traindown</strong> is typed while out of breath and covered in chalk or whatever else.</p>
+<table>
+  <thead><tr><th>Token</th><th>Name</th><th>Rules</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>EOF</td>
+      <td>End of file</td>
+      <td><pre>System defined</pre></td>
+    </tr>
+    <tr>
+      <td>LT</td>
+      <td>Line Terminator</td>
+      <td><pre>";" | Unicode line break codepoints</pre></td>
+    </tr>
+    <tr>
+      <td>ANY</td>
+      <td>Non Line Terminating Unicode</td>
+      <td><pre>!LT</pre></td>
+    </tr>
+    <tr>
+      <td>NUM</td>
+      <td>Number Values</td>
+      <td><pre>0123456789.</pre></td>
+    </tr>
+    <tr>
+      <td>DT</td>
+      <td>Date / Time</td>
+      <td><pre>"@" ANY* LT</pre></td>
+    </tr>
+    <tr>
+      <td>MK</td>
+      <td>Meta Key</td>
+      <td><pre>"#" ANY* ":"</pre></td>
+    </tr>
+    <tr>
+      <td>MV</td>
+      <td>Meta Value</td>
+      <td><pre>MK ANY* LT</pre></td>
+    </tr>
+    <tr>
+      <td>NOTE</td>
+      <td>Note</td>
+      <td><pre>"*" ANY* LT</pre></td>
+    </tr>
+    <tr>
+      <td>MN</td>
+      <td>Movement Name</td>
+      <td><pre>ANY* :</pre></td>
+    </tr>
+    <tr>
+      <td>SSMN</td>
+      <td>Superset Movement Name</td>
+      <td><pre>"+" ANY* :</pre></td>
+    </tr>
+    <tr>
+      <td>FAILS</td>
+      <td>Failures</td>
+      <td><pre>NUM* ("f" | "F")</pre></td>
+    </tr>
+    <tr>
+      <td>REPS</td>
+      <td>Reps</td>
+      <td><pre>NUM* ("r" | "R")</pre></td>
+    </tr>
+    <tr>
+      <td>SETS</td>
+      <td>Sets</td>
+      <td><pre>NUM* ("s" | "S")</pre></td>
+    </tr>
+    <tr>
+      <td>LOAD</td>
+      <td>Load</td>
+      <td><pre>NUM* | ("b" | "B")("w" | "W") ["+" NUM*]?</pre></td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>Traindown</strong> does not have composition of tokens into compound types or values. The table above represnts everything you will need to tokenize in order to parse a <strong>Traindown</strong> document</p>
+<h2>Scopes</h2>
+<p>There are <strong>four</strong> scopes to a <strong>Traindown</strong> document ordered here by broadest to narrowest:</p>
+<blockquote>
+<p><strong>Document</strong><br>
+<em>From the beginning of the file to the <strong>EOF</strong> token.</em></p>
+</blockquote>
+<blockquote>
+<p><strong>Session</strong><br>
+<em>From a <strong>DT</strong> token until <strong>EOF</strong> or another <strong>DT</strong> token</em></p>
+</blockquote>
+<blockquote>
+<p><strong>Movement</strong><br>
+<em>From an <strong>MN/SSMN</strong> token until <strong>EOF</strong> or another <strong>MN/SSMN</strong> token</em></p>
+</blockquote>
+<blockquote>
+<p><strong>Performance</strong><br>
+<em>From a <strong>LOAD</strong> token until <strong>EOF</strong> or another <strong>LOAD</strong> token.</em></p>
+</blockquote>
+<h3>Document Scope</h3>
+<p>Currently this scope is not used in the parsing of <strong>Traindown</strong>.</p>
+<p>Should your software make use of the document scope, please be sure to provide the people using your software of this. Also be aware that if you make use of the scope while it is currently undefined, you may have incompatibility with a future version of <strong>Traindown</strong>.</p>
+<p>That said, if you are using it, please reach out an let me know so that we can work to bring it into the spec.</p>
+<h3>Session Scope</h3>
+<p>A <strong>session</strong> is to be considered as a single training event.</p>
+<p>Every session <strong>must</strong> have at least a date on which it occurred.</p>
+<p>You <strong>should</strong> provide error messaging to remind the person that they should include a date (and/or time) in their <strong>Traindown</strong> document.</p>
+<p>A single <strong>Traindown</strong> document <strong>may</strong> contain more than one session. This is up to the person writing the document. Should your software not honor this, please be sure to message this to the people using your software. Ideally this is to be done prior to an error message and you should offer to auto format into one session per document as this is simple to do.</p>
+<p>In addition to the required date (and/or time), a session <strong>may</strong> contain metadata key/value pairs, notes, and movements. All three of those should be considered <em>optional</em>. A session without movements may not seem like a use case, but it is.</p>
+<h3>Movement Scope</h3>
+<p>A <strong>movement</strong> is to be considered as a single exercise or event in a training session. An example of this would be something like &quot;squats&quot;.</p>
+<p>A movement <strong>may</strong> contain metadata key/value pairs, notes, and performances.</p>
+<p>Like with sessions and movements, it may not make sense to have a movement without performances, but it is a supported use case so let's honor it.</p>
+<h3>Performance Scope</h3>
+<p>A <strong>performance</strong> is the expression of a movement.</p>
+<p>Each performance <strong>must</strong> have a load.</p>
+<p>A person writing <strong>Traindown</strong> may optionally provide sets, reps, and failures. In absence of explicit detail, you should assume a single set, a single rep, and no failures.</p>
+<p>A performance <strong>may</strong> contain metadata key/value pairs and notes.</p>
 
     
 <footer style="text-align: center;">

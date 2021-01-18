@@ -9,6 +9,29 @@ html {
   font-size: 62.5%;
 }
 
+blockquote {
+  margin-left: 40px;
+  padding: 0 5px;
+  position: relative;
+}
+
+blockquote::before {
+  background: #e3e3e3;
+  color: white;
+  content: "DEF";
+  font-size: 12px;
+  font-weight: bold;
+  position: absolute;
+  left: -40px;
+  text-align: center;
+  top: 4px;
+  width: 40px;
+}
+
+blockquote p {
+  margin: 0;
+}
+
 body {
   background: #fafafa;
   color: #222222;
@@ -96,6 +119,28 @@ nav ul li.active a {
   font-weight: bold;
 }
 
+table {
+  border: 1px solid #e3e3e3;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th,
+table td {
+  border-right: 1px solid #e3e3e3;
+  padding: 0 10px;
+  text-align: left;
+}
+
+table th:last-child,
+table td:last-child {
+  border-right: none;
+}
+
+table td {
+  border-top: 1px solid #e3e3e3;
+}
+
 textarea {
   border: 1px solid #f4f5f6;
   border-radius: 5px;
@@ -105,6 +150,10 @@ textarea {
   outline: none;
   padding: 10px;
   width: 100%;
+}
+
+.block {
+  display: block;
 }
 
 .center-text {

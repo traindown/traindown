@@ -4,6 +4,8 @@ root ./output
 
 file_server
 
+header { Cache-Control no-cache }
+
 handle_errors {
   @404 {
     expression {http.error.status_code} == 404

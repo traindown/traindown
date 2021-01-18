@@ -11,6 +11,8 @@ name: guide
 
 Traindown was created to help you easily capture all the things you do in a training session. It aims to provide you with a flexible, easy to remember language for expressing your training for record keeping purposes. As you will learn, writing out your training in **Traindown** is as simple as using a hashtag.
 
+*If you are a developer interesting in working with **Traindown**, please refer to the [Spec](/spec) for more low level details on the language.*
+
 ## The Basics
 
 At its core, **Traindown** allows us to express simply a training event which we call a **performance**.

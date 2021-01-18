@@ -7,11 +7,11 @@ Traindown was created to help you easily capture all the things you do in a trai
 
 ## The Basics
 
-The minimum viable **Traindown** file could be expressed as
+At its core, **Traindown** allows us to express simply a training event which we call a **performance**.
 ```
 Squat: 500
 ```
-This is saying "I did **one** rep of **500** in the **Squat**." 500 of what, you may ask? Well, that brings us to the next section!
+This is saying "I performed **one** rep of **500** in the **Squat**." 500 of what, you may ask? Well, that brings us to the next section!
 
 ## Metadata
 
@@ -33,9 +33,9 @@ Metadata allows you to express facts about the context of your training. Some co
 
 Squat: 500
 ```
-All the metadata we just added to the top of the file is called **session metadata**. This information applies to the entire session. **Traindown** also supports the concept of **performance metadata**.
+All the metadata we just added to the top of the file is called **session metadata**. This information applies to the entire session. **Traindown** also supports the concepts of **performance metadata** and **movement metadata**.
 
-Each combination of a load for sets and reps is considered a **performance** of a given movement. So in our example, lets assume this trainee likes to capture their "reps in reserve" for their top sets.
+Like we learned in the beginning of this guide, each combination of a load for sets and reps is considered a **performance** of a given movement. So in our example, lets assume this trainee likes to capture their "reps in reserve" for their top sets.
 ```
 # Week: 2
 # Day: 4
@@ -45,9 +45,11 @@ Each combination of a load for sets and reps is considered a **performance** of 
 Squat: 500
   # RIR: 2
 ```
-This is saying "For the single squat at 500, I had 2 reps in reserve." Unlike the burrito count, the reps in reserve are applied to only the performance.
+This is saying "For the single squat at 500 pounds, I had 2 reps in reserve." Unlike the burrito count, the reps in reserve are applied to only the performance. This is because it follows immediately the target performance.
 
 You may also track **movement metadata** that applies to all performances of the movement. To do so, just place your key value pair after the movement name and before any performances.
+
+Like with the session or performance metadata, the target movement *immediately preceeds* the metadata to which it should apply.
 
 By adding more details in the metadata, you can make more sense of the _why_ in your training at both the session and perofmrance level. Metadata is also very searchable, so if you choose to use a **Traindown** enabled analysis tool, you can really start to make sense of the big picture.
 
@@ -55,7 +57,13 @@ But wait...one key pieces is missing. _When_ did this happen?
 
 ## Date and Time
 
-The date and time when your training occurs is similar to metadata but is special enough to warrant it's own symbol. To specify the date and/or time that you trained, just use **@**, typically as the first thing in your **Traindown** file. To build on our example, it would look like
+The date and time when your training occurs is similar to metadata but is special enough to warrant it's own symbol. To specify the date and/or time that you trained, just use **@**, typically as the first thing in your **Traindown** file.
+
+In files where you may include more than a single session, the **@** will mark individual sessions.
+
+**NOTE:** You need to make sure and include the **@** symbol if you wish to use **Traindown**. Without it, the software is not able to correctly parse your training data because it will have no signal about when your training occurred.
+
+To build on our example, it would look like
 ```
 @ Dec 25 2019 8:03am
 
@@ -88,13 +96,15 @@ Looking at
 ```
 135 10r 2s
 ```
-we can read this as "I did two **sets** of ten **reps** at 135 pounds on the Squat." As you can see, we denote sets with an **s** and reps with an **r**.
+we can read this as "I performed two **sets** of ten **reps** at 135 (pounds if we look at the session metadata)." As you can see, we denote sets with an **s** and reps with an **r**.
 
 Further on down the day, we can see
 ```
 225 5r
 ```
-which can be read as "I did one set of five reps at 225 pounds on the Squat." If we omit either an r or and s, the default is 1. So circling back to the original 500, it _could_ be expressed as
+which can be read as "I performed one set of five reps at 225 (pounds on the Squat given the other information)." If we omit either an r or and s, the default is 1. So circling back to the original 500, it _could_ be expressed as the following.
+
+---
 
 **DON'T DO THIS**
 ```
@@ -102,11 +112,23 @@ which can be read as "I did one set of five reps at 225 pounds on the Squat." If
 ```
 **DON'T DO THIS**
 
-_Note: Seriously, don't do this. Save yourself the 1r / 1s shenanigans._
+---
 
-but the whole point of **Traindown** is to make recording your training easy, not annoying.
+**Note:** Seriously, don't do this. Save yourself the 1r / 1s shenanigans.
 
-The order of the reps and sets does not matter—we'll leave that debate to be settled on another date. However, you should _always_ lead a performance with the load.
+The whole point of **Traindown** is to make recording your training easy, not annoying and pedantic. The above example should look like
+
+---
+
+**DO THIS INSTEAD**
+```
+500
+```
+**DO THIS INSTEAD**
+
+---
+
+The order of the load, reps, and sets does not matter—we'll leave that debate to be settled on another date. However, folks _typically_ lead a performance with the load.
 
 There is one piece missing with our story so far. It's a dark thing. Not to be spoken of. That's right, I am talking about missed lifts.
 
@@ -193,7 +215,7 @@ Squat:
   455
   500 3s
 ```
-What we just added was a **session note**. This is a note that applies to the entire training session and we know that because it came before any movements, right below the session metadata. These notes are helpful for painting a landscape of your training. Let's add some fine details!
+What we just added was a **session note**. This is a note that applies to the entire training session and we know that because the rules for applying notes are the same as applying metadata. A note will apply to either the session, movement, or performance that immediately preceeds it. These notes are helpful for painting a landscape of your training. Let's add some fine details!
 ```
 @ Dec 25 2019 8:03am
 
@@ -221,10 +243,11 @@ Remember that each combination of a load for sets and reps is considered a **per
     * Surprisingly easy single given that episode at 405.
   500
     * Whoops. Spoke too soon. Clenching!
+    # pucker factor: 9000
   500
     * Another easy rep.
 ```
-Similar to metadata, there exists a third kind of note available to you called the **movement note**. This note is useful for capturing information about the entire movement such as stance, grip placement, etc. A movement note is declared after the movement name and before any performances, just like the movement metadata. For example
+Similar to metadata, there exists a third kind of note available to you called the **movement note**. This note is useful for capturing information about the entire movement such as stance, grip placement, etc. A movement note is declared after the movement name and before any performances. For example
 ```
 Squat:
 
@@ -245,21 +268,17 @@ The notes about pressure and hand placement apply to _all the performances_ of t
 
 ## Recap
 
-You now know all there is to know about **Traindown**.
+You now know most of **Traindown**. Congrats!
 
 Each session has many performances as well as a date and time on which it occurred. All three types of information-sessions, movements, and performances-can have notes and metadata. The layout of your file doesn't really matter in so far as you can read it years from now or the tool you use to analyze your training can read it.
 
-It's entirely up to you how you want to record your training and I recommend trying out different strategies to see what feels best for you. If you happen to have any questions, please feel free to email me at [tyler at greaterscott dot com](mailto: tyler@greaterscott.com). Kick ass!
+It's entirely up to you how you want to record your training and I recommend trying out different strategies to see what feels best for you. If you happen to have any questions, please feel free to email me at <a href="mailto:tyler@greaterscott.com">tyler at greaterscott dot com</a>. Kick ass!
 
 ## FAQs
 
-### What is the preferred file extension for Traindown?
-
-This will likely depend on your analysis tool of choice, but the standard file extension is **.traindown**—e.g., _20190101.traindown_. You could just as easily save your files as plain text files, if you prefer.
-
 ### What if part of my training is done in a different unit?
 
-Ah, a true connoisseur of units, I see. This is well supported using performance metadata and the "Unit" key. For example, lets say we needed to add some kettlebell swings to our session from above.
+Ah, a true connoisseur of units, I see. This is well supported using performance metadata and the **Unit** key. For example, lets say we needed to add some kettlebell swings to our session from above.
 ```
 @ Dec 25 2019 8:03am
 
@@ -284,6 +303,8 @@ Squat:
 Kettlebell swings: 24 10r 4s
   # Unit: kg
 ```
+If typing so many characters is not your thing, you may also use **u**, **U**, or **unit** (saves on a shift key) as well.
+
 ### Does Traindown support non-weight based training?
 
 Sadly, we can't lift weights all the time. Sometimes we wind up doing things like cardio or maybe even compete in sports that don't involve weights. **Traindown** is flexible enough to help you record all kinds of training. Let's see an example—this one is for a sprinter.
@@ -300,8 +321,49 @@ Jog: 1600
 ```
 Units in **Traindown** can really be _anything_, so whatever it is you are doing, you likely can record it with **Traindown**.
 
-* * *
+### Does Traindown support bodyweight based training?
 
-Made with 🤬. © | 2020 Greater Scott | All rights reserved.
+Totally. Bodyweight movements are a cornerstone of the well rounded athlete. In order to record a bodyweight movement, you just subsitute what would normally be the load of a performance with **bw**.
+```
+Dips: bw 10r 5s
+```
+If you are using additional weight via a belt or perhaps biting down on a dumbell, you can note that using **bw+**.
+```
+Dips:
+  bw 10r
+  bw+25 10r
+  bw+50 10r
+  bw 20r
+```
+Variations accepted are **BW**, **Bw**, and **bW** (for the true oddballs out there).
 
-Free for use under the BSD license.
+### What is the preferred file extension for Traindown? What about encoding? Or language?
+
+This will likely depend on your analysis tool of choice, but the standard file extension is **.traindown**—e.g., _20190101.traindown_. You could just as easily save your files as plain text files, if you prefer.
+
+All **Traindown** files should be encoded in UTF-8.
+
+**Traindown** supports unicode so any language is allowed for use. The caveat being certain keywords like the ones used for bodyweight, unit, sets, reps, and failures will be universal across languages unless the particular software you are using specifies those as configurable.
+
+
+### My Traindown file isn't being read correctly. Is there anything I can do?
+
+One thing not discussed above is the importance of line breaks for many of the operators in **Traindown**.
+
+For example, if we are writing a note like this
+```
+* My cool note
+```
+we know the end of the note to be the end of the line on which the note appears. If we do something like this
+```
+* My cool note * Here is what I would hope is another note
+```
+we get back only a single note with the entire content being everything on the life _after_ the _first_ star. This is because **Traindown** (or rather the software implementing [the spec](/spec)) does not know you intended to have two notes because a note is defined simply as "a line beginning with * and ending with a terminating codepoint".
+
+The last two words are crucial. Lucky for us, there is the **;** operator that is a terminating codepoint. You can use the ; in any place you would otherwise use a carriage return (or whatever your line endings are on your system).
+
+Looping back to the example, we could correct the two notes, one line issue like so
+```
+* My cool note; * Here is what I would hope is another note
+```
+This tool can be applied to anything in the **Traindown** file that would otherwise need a new line to parse. You could conceivably have a **Traindown** file be one long line delimited by ;. Why? I have no idea but it is possible!

@@ -321,7 +321,7 @@ Sadly, we can't lift weights all the time. Sometimes we wind up doing things lik
 
 Warmup drills: 3s
 
-60m sprints: 7.12 7.03 7.01
+'60m sprints: 7.12 7.03 7.01
   # Unit: seconds
 
 Jog: 1600

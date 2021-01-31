@@ -6,7 +6,6 @@ name: home
 
 <h1 class="hero center-text">Traindown</h1>
 <h2 class="center-text">A language to help athletes express their training. Inspired by Markdown.</h2>
-<h3 class="center-text">Current Version: 1.2</h3>
 
 ---
 

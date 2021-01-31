@@ -37,7 +37,7 @@
 <p><em>If you are a consumer looking for information on how to use <strong>Traindown</strong> to record your training, please refer to the <a href="/guide">Guide</a>.</em></p>
 <h2>Overview</h2>
 <p>The specification presented below aims to provide a complete definition of the <strong>Traindown</strong> Language such that you may go out into the world and develop software that can help other folks record and make sense of their personal training history.</p>
-<p>The language used in this specification is informal but comprehensive. Should you spot any errors or have any questions, please don't hesitate to email me at <a href="mailto:tyler@greaterscott.com">tyler at greaterscott.com</a>.</p>
+<p>The language used in this specification is informal but comprehensive. Should you spot any errors or have any questions, please don't hesitate to email me at <a href="mailto:tyler@greaterscott.com">tyler at greaterscott.com</a> or if you are on GitHub feel free to <a href="https://github.com/traindown/spec/issues">open an issue</a>.</p>
 <p>Also, don't forget to check out the <a href="/source">Source</a> page and the repos linked there for official prebuilt libraries that make using <strong>Traindown</strong> in your project as easy as adding another dependency.</p>
 <p>Without further ado, here is <strong>Traindown</strong>.</p>
 <h2>Keywords and Identifiers</h2>
@@ -135,7 +135,7 @@
 </blockquote>
 <blockquote>
 <p><strong>Performance</strong><br>
-<em>From a <strong>LOAD</strong> token until <strong>EOF</strong> or another <strong>LOAD</strong> token.</em></p>
+<em>(<strong>LOAD</strong> | <strong>FAILS</strong> | <strong>SETS</strong> | <strong>REPS</strong>) tokens until a previously encountered token type repeats or <strong>EOF</strong>.</em></p>
 </blockquote>
 <h3>Document Scope</h3>
 <p>Currently this scope is not used in the parsing of <strong>Traindown</strong>.</p>

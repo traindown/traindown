@@ -18,7 +18,7 @@ This specification is intended for **developers wanting to build software that u
 
 The specification presented below aims to provide a complete definition of the **Traindown** Language such that you may go out into the world and develop software that can help other folks record and make sense of their personal training history.
 
-The language used in this specification is informal but comprehensive. Should you spot any errors or have any questions, please don't hesitate to email me at [tyler at greaterscott.com](mailto:tyler@greaterscott.com).
+The language used in this specification is informal but comprehensive. Should you spot any errors or have any questions, please don't hesitate to email me at [tyler at greaterscott.com](mailto:tyler@greaterscott.com) or if you are on GitHub feel free to [open an issue](https://github.com/traindown/spec/issues).
 
 Also, don't forget to check out the [Source](/source) page and the repos linked there for official prebuilt libraries that make using **Traindown** in your project as easy as adding another dependency.
 
@@ -122,7 +122,7 @@ There are **four** scopes to a **Traindown** document ordered here by broadest t
 > *From an **MN/SSMN** token until **EOF** or another **MN/SSMN** token*
 
 > **Performance**
-> *From a **LOAD** token until **EOF** or another **LOAD** token.*
+> *(**LOAD** | **FAILS** | **SETS** | **REPS**) tokens until a previously encountered token type repeats or **EOF**.*
 
 ### Document Scope
 

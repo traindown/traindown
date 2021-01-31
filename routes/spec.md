@@ -6,10 +6,9 @@ name: spec
 
 <h1 class="hero center-text">Spec</h1>
 <h2 class="center-text">The Traindown language specification.</h2>
-<h2 class="center-text">Version 1.2</h2>
-<small class="block center-text">Published 2020.01.18</small>
 
----
+# Version 1.2.1
+## Published 2020.01.31
 
 This specification is intended for **developers wanting to build software that uses Traindown**.
 
@@ -168,3 +167,16 @@ A person writing **Traindown** may optionally provide sets, reps, and failures. 
 A performance **may** contain metadata key/value pairs and notes.
 
 You **should** record the sequence of the performances provided by the writer. This is important for them to make sense of the story of the movement.
+
+## Thanks
+
+A heartfelt **thanks** to all the folks that have helped **Traindown** become what it is today. Whether you may realize it or not, you have postitively impacted this project.
+
+A special **thanks** to
+
+* **Kate**: The first beta tester and endless well of support for its creator.
+* **@rbarden**: The first external contributor who kicked the tires and knocked off some sharp corners.
+
+**Kick ass!**
+
+

@@ -331,8 +331,13 @@ Units in **Traindown** can really be _anything_, so whatever it is you are doing
 
 ### Does Traindown support bodyweight based training?
 
-Totally. Bodyweight movements are a cornerstone of the well rounded athlete. In order to record a bodyweight movement, you just subsitute what would normally be the load of a performance with **bw**.
+Totally. Bodyweight movements are a cornerstone of the well rounded athlete. In order to record a bodyweight movement, you just subsitute what would normally be the load of a performance with **bw**. This should be used in conjunction with your weight noted in a metadata variable, e.g. `# bw: 160`.
 ```
+@ 2021-03-25
+
+# bw: 160
+# unit: lbs
+
 Dips: bw 10r 5s
 ```
 If you are using additional weight via a belt or perhaps biting down on a dumbell, you can note that using **bw+**.

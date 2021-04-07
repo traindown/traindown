@@ -281,8 +281,13 @@ Jog: 1600
 </code></pre>
 <p>Units in <strong>Traindown</strong> can really be <em>anything</em>, so whatever it is you are doing, you likely can record it with <strong>Traindown</strong>.</p>
 <h3>Does Traindown support bodyweight based training?</h3>
-<p>Totally. Bodyweight movements are a cornerstone of the well rounded athlete. In order to record a bodyweight movement, you just subsitute what would normally be the load of a performance with <strong>bw</strong>.</p>
-<pre><code>Dips: bw 10r 5s
+<p>Totally. Bodyweight movements are a cornerstone of the well rounded athlete. In order to record a bodyweight movement, you just subsitute what would normally be the load of a performance with <strong>bw</strong>. This should be used in conjunction with your weight noted in a metadata variable, e.g. <code># bw: 160</code>.</p>
+<pre><code>@ 2021-03-25
+
+# bw: 160
+# unit: lbs
+
+Dips: bw 10r 5s
 </code></pre>
 <p>If you are using additional weight via a belt or perhaps biting down on a dumbell, you can note that using <strong>bw+</strong>.</p>
 <pre><code>Dips:

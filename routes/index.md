@@ -50,7 +50,7 @@ Once you have an understanding, why not try out the [Playground](/playground) ri
 
 If you like, there is a mobile app called the [Traindown Transponder](/transponder) that is available for both iOS and Android. Be forewarned, it is rough around the edges. I hope to have time to polish it here soon.
 
-Better yet, *you* could build a better **Traindown** mobile application! You can write your own parser using the [Spec](/spec) or if you prefer using a library, I have a few available on the [Source](/page).
+Better yet, *you* could build a better **Traindown** mobile application! You can write your own parser using the [Spec](/spec) or if you prefer using a library, I have a few available on the [Source](/source).
 
 As always, should you have any questions, comments, or feedback please don't hesitate to reach me at <a href="mailto:tyler@greaterscott.com">tyler at greaterscott dot com</a>.
 
